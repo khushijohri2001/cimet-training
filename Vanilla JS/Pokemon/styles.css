@@ -1,0 +1,80 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items:center;
+    margin: 10px 20px;
+
+}
+
+.filter-wrapper{
+    display: flex;
+    gap: 10px;
+}
+
+.filter-wrapper select,input{
+    padding: 10px;
+}
+
+.card-container{
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+.load-more-wrapper{
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+}
+
+.load-more-wrapper button{
+    padding: 10px;
+    font-size: large;
+    font-weight: bold;
+}
+
+/* Flip Hover Effect on Card */
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+
+  .flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg);
+  }
+
+
