@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.circle{
+    height:20px;
+    width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    translate: -8px -8px;
+    animation: grow 1s 1 ease-in-out;
+}
+
+@keyframes grow{
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
