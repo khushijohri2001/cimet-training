@@ -58,6 +58,10 @@ a {
   transition: all 0.35s ease;
   position: relative;
 }
+.keypressBox{
+  background-color: blanchedalmond;
+
+}
 .box:hover{
   background-color: blanchedalmond;
 }

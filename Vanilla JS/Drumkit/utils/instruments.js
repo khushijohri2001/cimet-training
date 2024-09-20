@@ -9,7 +9,7 @@ export const instruments = [
         name: "Snare",
         imgSrc: "./assets/snare.png",
         sound: "./assets/snare.mp3",
-        key: "S"
+        key: "s"
     },
     {
         name: "Kick",
