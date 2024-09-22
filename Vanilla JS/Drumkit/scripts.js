@@ -5,7 +5,7 @@ const rightHalfPage = document.querySelector("#right");
 /* Updates:
 - add id on individual box div
 - event delegation on parent 
-- pass if instead of the whole div
+- pass id instead of the whole div
 
 */
 
