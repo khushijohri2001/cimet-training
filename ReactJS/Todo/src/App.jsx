@@ -6,7 +6,9 @@ import TaskList from './components/TaskList';
 function App() {
   const [input, setInput] = useState("");
   const [todoList, setTodoList] = useState(localStorage.getItem("todo") ? JSON.parse(localStorage.getItem("todo")) : []);
-  const [updatedTask, setUpdatedTask] = useState(null);
+  const [updatedTask, setUpdatedTask] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [editTaskId, setEditTaskId] = useState(null)
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -40,12 +42,12 @@ function App() {
     setTodoList([]);
   }
 
-  const editHandler = (id,isEdit, updatedTask) => {
-    const updatedTodo = todoList.map((task) => task.id === id ? {...task, task: updatedTask}: task)
-    console.log(updatedTodo);
-    setTodoList(updatedTodo);
-  }
+  const editUpdateHandler = (id, updatedTask) => {
+    const updatedTodo = todoList.map((task) => task.id === id ? {...task, task: updatedTask}: task);
 
+     setTodoList(updatedTodo);
+    
+  }
   useEffect(() => {
     localStorage.setItem("todo", JSON.stringify(todoList))
   }, [todoList])
@@ -56,7 +58,7 @@ function App() {
 
       <Form submitHandler={submitHandler} input={input} setInput={setInput} deleteAllHandler={deleteAllHandler}/>
 
-      <TaskList todoList={todoList} taskCompleteHandler={taskCompleteHandler} deleteHandler={deleteHandler} editHandler={editHandler}/>
+      <TaskList editUpdateHandler={editUpdateHandler} todoList={todoList} taskCompleteHandler={taskCompleteHandler} deleteHandler={deleteHandler} />
     </div>
   )
 }
