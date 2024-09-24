@@ -6,9 +6,6 @@ import TaskList from './components/TaskList';
 function App() {
   const [input, setInput] = useState("");
   const [todoList, setTodoList] = useState(localStorage.getItem("todo") ? JSON.parse(localStorage.getItem("todo")) : []);
-  const [updatedTask, setUpdatedTask] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
-  const [editTaskId, setEditTaskId] = useState(null)
 
   const submitHandler = (e) => {
     e.preventDefault()
