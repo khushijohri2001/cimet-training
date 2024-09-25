@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Banner = () => {
   return (
     <div className='h-[30rem] text-white flex flex-col gap-8 items-center justify-center'>

@@ -5,7 +5,7 @@ import { useAvatar } from "../context/AvatarContext";
 import CrossButton from "./constants/CrossButton";
 
 const NewUserModal = () => {
-  const { isNewUser, setIsNewUser, dispatch, state } = useAvatar();
+  const { isNewUser, setIsNewUser, dispatch } = useAvatar();
   const [newUser, setNewUser] = useState(null);
 
   const newUserHandler = (e) => {
