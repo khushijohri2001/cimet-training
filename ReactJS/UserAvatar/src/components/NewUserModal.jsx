@@ -1,11 +1,24 @@
 /* eslint-disable react/prop-types */
 
+import { useState } from "react";
 import { useAvatar } from "../context/AvatarContext";
 import CrossButton from "./constants/CrossButton";
 
-// eslint-disable-next-line no-unused-vars
 const NewUserModal = () => {
-  const { isNewUser, setIsNewUser } = useAvatar();
+  const { isNewUser, setIsNewUser, dispatch, state } = useAvatar();
+  const [newUser, setNewUser] = useState(null);
+
+  const newUserHandler = (e) => {
+    let input = e.target.value;
+    input && setNewUser(input)
+  }
+
+  const addNewUserHandler = () => {
+    newUser && dispatch({ type: "ADD_AVATAR", payload: {id: Date.now(), username: newUser} });
+    setNewUser("")
+    setIsNewUser(false)
+  }
+
   return (
     <>
       {isNewUser && (
@@ -18,13 +31,13 @@ const NewUserModal = () => {
           </h1>
           <div className="px-4 py-8 bg-white flex gap-5">
             <label htmlFor="">Enter Name</label>
-            <input type="text" className="border" />
+            <input type="text" className="border" onChange={newUserHandler} autoFocus />
           </div>
           <div className="bg-gray-400 p-4 rounded-b-md flex gap-6 justify-center">
             <button className="p-2 w-28 rounded-md text-white bg-red-500 hover:border hover:border-red-700" onClick={() => setIsNewUser(!isNewUser)}>
               Cancel
             </button>
-            <button className="p-2 w-28 rounded-md text-white bg-green-500 hover:border hover:border-green-700">
+            <button className="p-2 w-28 rounded-md text-white bg-green-500 hover:border hover:border-green-700" onClick={addNewUserHandler}>
               Submit
             </button>
           </div>

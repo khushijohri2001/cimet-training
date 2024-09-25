@@ -1,10 +1,14 @@
+import { useAvatar } from "../context/AvatarContext"
 import Avatar from "./Avatar"
 
 const AvatarList = () => {
-  
-    return (
+  const { state: {users} } = useAvatar();
+
+  return (
     <>
-    <Avatar/>
+      {
+        users && users.map((user) => <Avatar key={user.id} user={user} />)
+      }
     </>
   )
 }
