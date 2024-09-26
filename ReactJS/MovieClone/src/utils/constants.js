@@ -1,9 +1,9 @@
 const API_KEY = "fa89a24b6ec93d795380bdb4810bb735";
 
-export const getTrendingApi = "https://api.themoviedb.org/3/trending/all/day?language=en-US"
-
 export const getImageUrl = "https://image.tmdb.org/t/p/original/" 
 // (to get images)
+
+export const getTrendingApi = "https://api.themoviedb.org/3/trending/all/day?language=en-US&api_key=" + API_KEY
 
 export const getPopularMoviesApi =  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=" + API_KEY
 // (to get popular)
