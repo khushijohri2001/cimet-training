@@ -3,10 +3,10 @@
 import MovieCard from "./MovieCard"
 
 const Carousel = ({cardList}) => {
+  
   return (
-    <div>
-      {/* {cardList} */}
-      <MovieCard />
+    <div className="flex flex-wrap gap-4">
+      {cardList.filter((card) => card.original_title).map((card) => <MovieCard card={card}/>)}
     </div>
   )
 }

@@ -3,7 +3,7 @@ import App from "../App";
 import Home from "../pages/Home";
 import Explore from "../pages/Explore";
 import Search from "../pages/Search";
-import { homeLoader } from "./Loader";
+import { homeLoader, movieLoader, tvShowLoader } from "./Loader";
 import PageNotFound from "../pages/PageNotFound";
 
 export const AppRouter = createBrowserRouter([
@@ -13,7 +13,7 @@ export const AppRouter = createBrowserRouter([
         errorElement: <PageNotFound/>,
         children: [
             {
-                path: "/",
+               index: true,
                 element: <Home/>,
                 loader: homeLoader
             },
@@ -22,11 +22,13 @@ export const AppRouter = createBrowserRouter([
                 children: [
                     {
                         path: "movie",
-                        element: <Explore/>
+                        element: <Explore/>,
+                        loader: movieLoader
                     },
                     {
                         path: "tv",
-                        element: <Explore/>
+                        element: <Explore/>,
+                        loader: tvShowLoader
                     },
                 ]
             },

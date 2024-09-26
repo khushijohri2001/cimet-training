@@ -1,7 +1,9 @@
+import { getImageUrl } from "../utils/constants"
+
 const Banner = ({ imagePath }) => {
 
   return (
-    <div style={{ backgroundImage: `url(${imagePath})` }} className="h-[40rem] w-full object-contain bg-cover bg-center text-white ">
+    <div style={{ backgroundImage: `url(${getImageUrl}${imagePath})` }} className="h-[40rem] w-full object-contain bg-cover bg-center text-white ">
       <div className='h-[30rem] flex flex-col gap-8 items-center justify-center'>
         <h1 className='text-6xl'>Welcome.</h1>
         <p className='text-2xl'>Millions of movies, TV shows and people to discover. Explore now.

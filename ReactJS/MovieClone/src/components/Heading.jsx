@@ -2,9 +2,9 @@
 import Carousel from './Carousel'
 import Toggle from './Toggle'
 
-const Heading = ({title, toggle, cardList}) => {
+const Heading = ({title, toggle}) => {
   return (
-    <div className='flex flex-col gap-4 w-[70rem] mb-8'>
+    <div className='flex flex-col gap-4 w-[76rem] mb-8'>
         <div className='flex items-center justify-between'>
             <h4 className='text-white text-3xl'>{title}</h4>
             <Toggle toggle={toggle} />

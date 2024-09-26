@@ -1,4 +1,4 @@
-import { getImageUrl, getTrendingApi, getUpcomingMoviesApi } from "../utils/constants"
+import { getAllMovieApi, getAllTvShowsApi, getTrendingDayApi, getTrendingWeekApi, getUpcomingMoviesApi } from "../utils/constants"
 import axios from "axios";
 import { randomIndexGenerator } from "../utils/helperFunctions";
 
@@ -7,24 +7,37 @@ const fetchBannerImage = async () => {
     const data = response.data.results;
     const randomData = randomIndexGenerator(0, data.length)
     const imagePath = data[randomData].backdrop_path
-    const temp = getImageUrl+imagePath
-    
-    return temp
+    return imagePath;
 }
 
-const fetchTrending = async () => {
-    const response = await axios.get(getTrendingApi);
-    return response.data
+const fetchTrendingDay = async () => {
+    const response = await axios.get(getTrendingDayApi);
+    return response.data.results
 }
+
+const fetchTrendingWeek = async () => {
+    const response = await axios.get(getTrendingWeekApi);
+    return response.data.results
+}
+
+// const fetchPopular = async () => {
+
+// }
 
 export const homeLoader = async () => {
-    // [imagePath, trendingList]
-    // const data = await Promise.all([
-    //     fetchBannerImage, fetchTrending
-    // ])
-    // fetchBannerImage();
-    // fetchTrending()
+    const imagePath = await fetchBannerImage();
+    const trendingDay = await fetchTrendingDay()
+    const trendingWeek = await fetchTrendingWeek()
     
-    return {fetchBannerImage, fetchTrending};
-    // return data;
+    return {imagePath, trendingDay, trendingWeek};
+}
+
+export const movieLoader = async () => {
+    const response = await axios.get(getAllMovieApi);
+    return response.data.results
+}
+
+export const tvShowLoader = async () => {
+    const response = await axios.get(getAllTvShowsApi);
+    return response.data.results
 }
