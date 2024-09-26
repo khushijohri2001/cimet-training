@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
     return (
-        <nav className="bg-slate-900 border-gray-700 flex items-center justify-between py-6 px-16">
+        <nav className="bg-slate-900 border-gray-700 flex items-center justify-between py-6 px-16 sticky top-0 z-50">
             <div>
                 <Link to="/">
                 <img src="https://movix-app-murex.vercel.app/assets/movix-logo-HTlvmwAF.svg" alt="Movix Logo" />
