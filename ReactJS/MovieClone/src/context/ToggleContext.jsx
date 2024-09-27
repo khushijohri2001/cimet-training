@@ -3,9 +3,9 @@ import Reducer from "../reducer/Reducer";
 
 const ToggleContext = createContext(null);
 const initialState = {
-    isTrending: false,
-    isPopular: false,
-    isTopRates: false
+    trending: { data: [], isLoading: false},
+    // isPopular: false,
+    // isTopRates: false
 }
 
 

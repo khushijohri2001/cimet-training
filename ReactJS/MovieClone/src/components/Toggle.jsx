@@ -1,51 +1,23 @@
 /* eslint-disable react/prop-types */
 
 import { useState } from "react"
-import { useToggle } from "../context/ToggleContext";
 
-const Toggle = ({ toggle, title }) => {
-  const { dispatch } = useToggle();
-  const [isToggle, setIsToggle] = useState(false);
-
+const Toggle = ({ buttons:{button1, button2}, activeButton, setActiveButton, setActiveData, data }) => {
 
   const toggleButtonHandler1 = () => {
-    setIsToggle(false)
-
-    if (title === "Trending") {
-      dispatch({
-        type: "TRENDING_TOGGLE", payload: false
-      })
-    }
-
-    if (title === "Popular") {
-      dispatch({
-        type: "POPULAR_TOGGLE", payload: false
-      })
-    }
+    setActiveButton(button1)
+    setActiveData(data[0])
   }
 
   const toggleButtonHandler2 = () => {
-    setIsToggle(true)
-
-    if (title === "Trending") {
-    dispatch({
-      type: "TRENDING_TOGGLE", payload: true
-    })
+    setActiveButton(button2)
+    setActiveData(data[1])
   }
-
-  if (title === "Popular") {
-    dispatch({
-      type: "POPULAR_TOGGLE", payload: true
-    })
-  }
-  }
-
-
 
   return (
     <div className="border-collapse">
-      <button className={`w-24 p-1 rounded-l-md ${!isToggle ? "bg-orange-500 text-white border  border-pink-200" : "bg-slate-200 text-black"}`} onClick={toggleButtonHandler1}>{toggle.key1.name}</button>
-      <button className={`w-24 p-1 rounded-r-md  ${isToggle ? "bg-orange-500 text-white  border  border-pink-200" : "bg-slate-200 text-black"}`} onClick={toggleButtonHandler2}>{toggle.key2.name}</button>
+      <button className={`w-24 p-1 rounded-l-md ${activeButton === button1 ? "bg-orange-500 text-white border  border-pink-200" : "bg-slate-200 text-black"}`} onClick={toggleButtonHandler1}>{button1}</button>
+      <button className={`w-24 p-1 rounded-r-md  ${activeButton === button2 ? "bg-orange-500 text-white  border  border-pink-200" : "bg-slate-200 text-black"}`} onClick={toggleButtonHandler2}>{button2}</button>
     </div>
   )
 }

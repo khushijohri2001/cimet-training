@@ -41,15 +41,9 @@ const fetchTopRatedTvShow = async () => {
 }
 
 export const homeLoader = async () => {
-    const imagePath = await fetchBannerImage();
-    const trendingDay = await fetchTrendingDay();
-    const trendingWeek = await fetchTrendingWeek();
-    const popularMovie = await fetchPopularMovie();
-    const popularTvShow = await fetchPopularTvShow();
-    const topRatedMovie = await fetchTopRatedMovie();
-    const topRatedTvShow = await fetchTopRatedTvShow();
-    
-    return {imagePath, trendingDay, trendingWeek, popularMovie, popularTvShow, topRatedMovie, topRatedTvShow};
+    const [imagePath, trendingDay, trendingWeek, popularMovie, popularTvShow, topRatedMovie, topRatedTvShow] = await Promise.all([fetchBannerImage(), fetchTrendingDay(), fetchTrendingWeek(), fetchPopularMovie(), fetchPopularTvShow(), fetchTopRatedMovie(), fetchTopRatedTvShow()])
+
+    return { imagePath, trendingDay, trendingWeek, popularMovie, popularTvShow, topRatedMovie, topRatedTvShow }
 }
 
 export const movieLoader = async () => {
