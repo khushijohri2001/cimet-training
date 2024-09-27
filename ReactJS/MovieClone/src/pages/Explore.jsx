@@ -5,7 +5,6 @@ const Explore = () => {
   const data = useLoaderData();
   const location = useLocation();
   const currentRoute = location?.pathname
-  console.log(data);
   
 
 

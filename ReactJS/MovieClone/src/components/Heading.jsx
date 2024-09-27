@@ -7,7 +7,6 @@ const Heading = ({title, data, buttons}) => {
   const [activeButton, setActiveButton] = useState(buttons.button1);
   const [activeData, setActiveData] = useState(data[0]);
 
-console.log(activeData);
 
 
   return (

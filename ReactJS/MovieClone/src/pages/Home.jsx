@@ -5,7 +5,6 @@ import Heading from '../components/Heading'
 const Home = () => {
   const {imagePath, trendingDay, trendingWeek, popularMovie, popularTvShow, topRatedMovie, topRatedTvShow} = useLoaderData();
   
-  
   return (
     <div className='bg-gray-800 flex flex-col gap-20 items-center'>
       <Banner imagePath={imagePath}/>
