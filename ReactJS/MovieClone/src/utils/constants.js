@@ -12,6 +12,11 @@ export const getPopularMoviesApi =  "https://api.themoviedb.org/3/movie/popular?
 
 export const getPopularTvShowApi =  "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1&api_key=" + API_KEY
 
+export const getTopRatedMovieApi =  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=" + API_KEY
+
+export const getTopRatedTVShowApi =  "https://api.themoviedb.org/3/tv/top_rated?language=en-US&page=1&api_key=" + API_KEY
+
+
 export const getUpcomingMoviesApi = "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=" + API_KEY 
 // (to get popular)
 

@@ -3,9 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import { AppRouter } from './routes/Route.jsx'
+import { ToggleProvider } from './context/ToggleContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ToggleProvider>
     <RouterProvider router={AppRouter}/>
+    </ToggleProvider>
   </StrictMode>,
 )
