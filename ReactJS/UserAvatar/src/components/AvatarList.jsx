@@ -1,16 +1,16 @@
-import { useAvatar } from "../context/AvatarContext"
-import Avatar from "./Avatar"
+import { useAvatar } from "../context/AvatarContext";
+import Avatar from "./Avatar";
 
 const AvatarList = () => {
-  const { state: {users} } = useAvatar();
+  const {
+    state: { users },
+  } = useAvatar();
 
   return (
-    <>
-      {
-        users && users.map((user) => <Avatar key={user.id} user={user} />)
-      }
-    </>
-  )
-}
+    <div className="flex gap-4 flex-wrap">
+      {users && users.map((user) => <Avatar key={user.id} user={user} />)}
+    </div>
+  );
+};
 
-export default AvatarList
+export default AvatarList;

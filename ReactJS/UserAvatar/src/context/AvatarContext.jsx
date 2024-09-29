@@ -4,20 +4,34 @@ import Reducer from "../reducers/Reducer";
 
 const AvatarContext = createContext(null);
 const initialState = {
-    users: []
-}
+  users: [],
+  userId: null,
+};
 
-const AvatarProvider = ({children}) => {
-    const [state, dispatch] = useReducer(Reducer, initialState)
-    const [isNewUser, setIsNewUser] =  useState(false)
+const AvatarProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(Reducer, initialState);
+  const [isNewUser, setIsNewUser] = useState(false);
+  const [isRemoveUser, setIsRemoveUser] = useState(false);
+  const [removedUserId, setRemoveUserId] = useState(null);
 
-    return(
-        <AvatarContext.Provider value={{state, dispatch, isNewUser, setIsNewUser}}>
-            {children}
-        </AvatarContext.Provider>
-    )
-}
+  return (
+    <AvatarContext.Provider
+      value={{
+        state,
+        dispatch,
+        isNewUser,
+        setIsNewUser,
+        isRemoveUser,
+        setIsRemoveUser,
+        removedUserId,
+        setRemoveUserId,
+      }}
+    >
+      {children}
+    </AvatarContext.Provider>
+  );
+};
 
 const useAvatar = () => useContext(AvatarContext);
 
-export {useAvatar, AvatarProvider}
+export { useAvatar, AvatarProvider };

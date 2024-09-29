@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { getImageUrl } from "../utils/constants";
 
 const MovieCard = ({card}) => {

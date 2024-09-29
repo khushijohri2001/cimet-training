@@ -22,9 +22,9 @@ const NewUserModal = () => {
   return (
     <>
       {isNewUser && (
-        <div className="absolute top-14 left-12 flex flex-col justify-between h-32 w-96 shadow-2xl ">
-          <div className="absolute -top-3 -right-2">
-            <CrossButton onClick={() => setIsNewUser(!isNewUser)} />
+        <div className="absolute top-14 left-12 flex flex-col justify-between h-32 w-96 shadow-2xl shadow-black">
+          <div className="absolute -top-3 -right-2" onClick={() => setIsNewUser(!isNewUser)}>
+            <CrossButton/>
           </div>
           <h1 className="border-b-2 border-gray-800 bg-gray-400 p-4 rounded-t-md">
             New User
