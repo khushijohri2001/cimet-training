@@ -2,7 +2,7 @@ import { useLoaderData, useLocation } from "react-router-dom"
 import MovieCardList from "../components/MovieCardList";
 
 const Explore = () => {
-  const data = useLoaderData();
+  // const data = useLoaderData();
   const location = useLocation();
   const currentRoute = location?.pathname
   
@@ -29,7 +29,7 @@ const Explore = () => {
           </div>
         </div>
 
-        <MovieCardList movies={data} />
+        {/* <MovieCardList movies={data} /> */}
 
       </div>
     </div>

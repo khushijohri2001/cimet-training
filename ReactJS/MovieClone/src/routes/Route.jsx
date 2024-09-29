@@ -22,25 +22,33 @@ export const AppRouter = createBrowserRouter([
                 children: [
                     {
                         path: "movie",
-                        element: <Explore/>,
                         loader: movieLoader,
-                        // children: [
-                        //     {
-                        //         path: ":movieId",
-                        //         element: <SinglePage/>
-                        //     }
-                        // ]
+                        children: [
+                            {
+                                index: true,
+                                element: <Explore/>,
+                            },
+                            {
+                                path: ":movieId",
+                                element: <SinglePage/>
+                            }
+                        ]
                     },
                     {
                         path: "tv",
-                        element: <Explore/>,
-                        loader: tvShowLoader
+                        loader: tvShowLoader,
+                        children: [
+                            {
+                                index: true,
+                                element: <Explore/>,
+                            },
+                            {
+                                path: ":tvId",
+                                element: <SinglePage/>
+                            }
+                        ]
                     },
                 ]
-            },
-            {
-            path: ":id",
-            element: <SinglePage/>
             },
             {
                 path: "search",
