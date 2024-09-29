@@ -2,55 +2,59 @@ import { instruments } from "./utils/instruments.js";
 
 const rightHalfPage = document.querySelector("#right");
 
-/* Updates:
-- add id on individual box div
-- event delegation on parent 
-- pass id instead of the whole div
-
-*/
-
 const showInstruments = () => {
-    instruments.forEach(({ name, imgSrc, sound, key }) => {
-        const createImageWrapper = document.createElement("div");
-        createImageWrapper.classList.add("box")
+  instruments.forEach(({ name, imgSrc, sound, key }) => {
+    const createImageWrapper = document.createElement("div");
+    createImageWrapper.classList.add("box");
 
-        const createImage = document.createElement("img");
-        createImage.src = imgSrc;
+    const nameBoxId = name + "box";
+    createImageWrapper.id = nameBoxId;
 
-        rightHalfPage.appendChild(createImageWrapper).appendChild(createImage)
+    const createImage = document.createElement("img");
+    createImage.src = imgSrc;
+    createImage.id = name;
 
-        createImageWrapper.addEventListener("click", () => playSound(sound));
-        document.addEventListener("keydown", (e) => playSoundOnKeyPress(e, sound, key, createImageWrapper));
+    rightHalfPage.appendChild(createImageWrapper).appendChild(createImage);
 
+    // Event delegation
+    rightHalfPage.addEventListener("click", (e) => {
+      if (e.target.id === name || e.target.id === nameBoxId) {
+        playSound(sound);
+      }
+    });
 
-    })
-}
+    document.addEventListener("keydown", (e) =>
+      playSoundOnKeyPress(e, sound, key, nameBoxId)
+    );
+  });
+};
 
 const playSound = (sound) => {
-    const audio = new Audio(sound);
-    audio.play();
+  const audio = new Audio(sound);
+  audio.play();
+};
 
-}
+const playSoundOnKeyPress = (e, sound, key, nameBoxId) => {
+  if (e.key === key) {
+    playSound(sound);
+    displayPressedKey(e, nameBoxId);
+  }
+};
 
-const playSoundOnKeyPress = (e, sound, key, createImageWrapper) => {
-    if (e.key === key) {
-        playSound(sound);
-        displayPressedKey(e, createImageWrapper);
-    }
+const displayPressedKey = (e, nameBoxId) => {
+  const createKeyDiv = document.createElement("div");
+  createKeyDiv.innerText = e.key;
+  createKeyDiv.classList.add("key");
 
-}
+  const imageWrapper = document.querySelector(`#${nameBoxId}`);
 
-const displayPressedKey = (e, createImageWrapper) => {
-    const createKeyDiv = document.createElement("div");
-    createKeyDiv.innerText = e.key;
-    createKeyDiv.classList.add("key")
-    createImageWrapper.appendChild(createKeyDiv);
-    createImageWrapper.classList.add("keypressBox")
+  imageWrapper.appendChild(createKeyDiv);
+  imageWrapper.classList.add("keypressBox");
 
-    setTimeout(() => {
-        createKeyDiv.remove();
-        createImageWrapper.classList.remove("keypressBox")
-    }, 1500);
-}
+  setTimeout(() => {
+    createKeyDiv.remove();
+    imageWrapper.classList.remove("keypressBox");
+  }, 1500);
+};
 
 showInstruments();
