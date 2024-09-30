@@ -1,28 +1,35 @@
-import { useParams } from "react-router-dom";
+import { useLoaderData, useLocation, useParams } from "react-router-dom";
 import SinglePageContent from "../components/SinglePageContent";
 import RelatedHighlights from "../components/RelatedHighlights";
 import TopCastList from "../components/TopCastList";
 import OfficialVideoList from "../components/OfficialVideoList";
+import { getImageUrl } from "../utils/constants";
 
 const SinglePage = () => {
-  const id = useParams();
-  console.log(id);
+  const location = useLocation();
+  const currentPath = location?.pathname.includes("movie") ? "movie":"tv";
+
+  const {movieDetails, movieCastDetails, movieVideoDetails} = useLoaderData();
+
+  const {backdrop_path} = movieDetails;
+
+  const trailer = movieVideoDetails.find((video) => video.type === "Trailer")
+
 
   return (
     <div className="bg-slate-800 text-white">
       <div
         className="h-[40rem] w-full object-contain bg-cover bg-center text-white relative flex"
         style={{
-          backgroundImage: `url(https://c4.wallpaperflare.com/wallpaper/536/846/466/interstellar-movie-movies-wallpaper-preview.jpg)`,
+          backgroundImage: `url(${getImageUrl}/${backdrop_path})`,
         }}
       >
-        {/* Overlay */}
-        <div className="h-[40rem] w-screen absolute bg-slate-900 opacity-95"></div>
+        <div className="h-[40rem] w-screen absolute bg-slate-900 opacity-90"></div>
 
-        <SinglePageContent />
+        <SinglePageContent movieDetails={movieDetails} trailer={trailer} />
       </div>
 
-      <RelatedHighlights title="Top Cast" list={<TopCastList/>} />
+      <RelatedHighlights title="Top Cast" list={<TopCastList castDetails={movieCastDetails}/>} />
       <RelatedHighlights title="Official Videos" list={<OfficialVideoList/>} />
     </div>
   );

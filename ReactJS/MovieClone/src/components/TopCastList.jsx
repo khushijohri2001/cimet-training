@@ -1,10 +1,12 @@
 import TopCastCard from "./TopCastCard"
 
-const TopCastList = () => {
+const TopCastList = ({castDetails}) => {
+  
   return (
     <div className="flex gap-6 flex-wrap">
-      {/* mapping add */}
-        <TopCastCard />
+      {
+        castDetails.cast.map((cast) =>  <TopCastCard key={cast.id} cast={cast}/>)
+      }
     </div>
   )
 }

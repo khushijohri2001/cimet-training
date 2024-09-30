@@ -3,18 +3,18 @@ import App from "../App";
 import Home from "../pages/Home";
 import Explore from "../pages/Explore";
 import Search from "../pages/Search";
-import { homeLoader, movieLoader, tvShowLoader } from "./Loader";
+import { homeLoader, movieLoader, singleMovieLoader, singleTvLoader, tvShowLoader } from "./Loader";
 import PageNotFound from "../pages/PageNotFound";
 import SinglePage from "../pages/SinglePage";
 
 export const AppRouter = createBrowserRouter([
     {
         path: "/",
-        element: <App/>,
+        element: <App />,
         children: [
             {
                 index: true,
-                element: <Home/>,
+                element: <Home />,
                 loader: homeLoader
             },
             {
@@ -22,40 +22,34 @@ export const AppRouter = createBrowserRouter([
                 children: [
                     {
                         path: "movie",
+                        element: <Explore />,
                         loader: movieLoader,
-                        children: [
-                            {
-                                index: true,
-                                element: <Explore/>,
-                            },
-                            {
-                                path: ":movieId",
-                                element: <SinglePage/>
-                            }
-                        ]
+
                     },
                     {
                         path: "tv",
+                        element: <Explore />,
                         loader: tvShowLoader,
-                        children: [
-                            {
-                                index: true,
-                                element: <Explore/>,
-                            },
-                            {
-                                path: ":tvId",
-                                element: <SinglePage/>
-                            }
-                        ]
                     },
                 ]
+            },
+            {
+                path: "movie/:movieId",
+                element: <SinglePage />,
+                loader: singleMovieLoader
+            },
+            ,
+            {
+                path: "tv/:tvId",
+                element: <SinglePage />,
+                loader: singleTvLoader
             },
             {
                 path: "search",
                 children: [
                     {
                         path: ":query",
-                        element: <Search/>
+                        element: <Search />
                     }
                 ]
             }
@@ -63,6 +57,6 @@ export const AppRouter = createBrowserRouter([
     },
     {
         path: "*",
-        element:  <PageNotFound/>
+        element: <PageNotFound />
     }
 ])

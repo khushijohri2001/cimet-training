@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
+import { Link, useLoaderData } from "react-router-dom";
 import { getImageUrl } from "../utils/constants";
 
-const MovieCard = ({card}) => {
+const MovieCard = ({card, route}) => {
   const {id, original_title, original_name, poster_path, release_date, vote_average, first_air_date} = card
   
+
   return (
+    <Link to={`/${route}/${id}`} >
     <div className="inline-block w-[13rem] hover:scale-105">
       <div className="relative">
         <img src={getImageUrl+poster_path} alt={original_title || original_name} className="w-56 rounded-md h-96 object-contain" />
@@ -23,6 +26,7 @@ const MovieCard = ({card}) => {
       </div>
 
     </div>
+    </Link>
   )
 }
 
