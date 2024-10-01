@@ -4,7 +4,6 @@ import { getImageUrl } from "../utils/constants";
 
 const MovieCard = ({card, route}) => {
   const {id, original_title, original_name, poster_path, release_date, vote_average, first_air_date} = card
-  
 
   return (
     <Link to={`/${route}/${id}`} >

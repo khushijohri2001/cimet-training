@@ -3,7 +3,7 @@
 import { useState } from "react"
 import MovieCard from "./MovieCard"
 
-const Carousel = ({ cardList }) => {
+const Carousel = ({ cardList, route }) => {
   const [pageIndex, setPageIndex] = useState(0);
   const showCardCount = 5;
   const startIndex = pageIndex * showCardCount;
@@ -18,13 +18,12 @@ const Carousel = ({ cardList }) => {
     setPageIndex((prevPageIndex) => (prevPageIndex + 1) % Math.ceil(cardList.length / showCardCount))
   }
 
-
   return (
     <div className="flex text-white">
       <button onClick={prevHandler}>{"<"}</button>
 
       <div className="flex overflow-x-auto space-x-4 pb-4 m-3 mb-8 gap-6 no-scrollbar">
-        {currentCardsList.map((card) => <MovieCard card={card} />)}
+        {currentCardsList.map((card) => <MovieCard route={route} card={card} />)}
       </div>
 
       <button onClick={nextHandler}>{">"}</button>
