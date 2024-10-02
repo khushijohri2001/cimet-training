@@ -2,11 +2,12 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { getImageUrl } from "../utils/constants";
 
-const MovieCard = ({card, route}) => {
-  const {id, original_title, original_name, poster_path, release_date, vote_average, first_air_date} = card
+const MovieCard = ({card, route, title}) => {
+  const {id, original_title, original_name, poster_path, release_date, vote_average, first_air_date, media_type} = card
+
 
   return (
-    <Link to={`/${route}/${id}`} >
+    <Link to={`/${title === "Trending" ? media_type : route}/${id}`} >
     <div className="inline-block w-[13rem] hover:scale-105">
       <div className="relative">
         <img src={getImageUrl+poster_path} alt={original_title || original_name} className="w-56 rounded-md h-96 object-contain" />
