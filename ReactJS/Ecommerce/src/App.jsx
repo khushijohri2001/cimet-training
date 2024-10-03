@@ -3,15 +3,18 @@ import { Outlet } from "react-router-dom";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { CartContextProvider } from './context/CartContext';
+import { BlogContextProvider } from './context/BlogContext';
 
 function App() {
 
   return (
     <>
       <CartContextProvider>
-        <Header />
-        <Outlet />
-        <Footer />
+        <BlogContextProvider>
+          <Header />
+          <Outlet />
+          <Footer />
+        </BlogContextProvider>
       </CartContextProvider>
     </>
   )
