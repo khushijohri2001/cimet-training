@@ -3,6 +3,7 @@ import AddToCartButton from './buttons/AddToCartButton'
 import DeleteFromCartButton from './buttons/DeleteFromCartButton';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
+import { useCurrency } from '../context/CurrencyContext';
 
 const ProductCard = ({ product }) => {
   const { id, title, price, image } = product;
@@ -10,6 +11,9 @@ const ProductCard = ({ product }) => {
   const [isInCart, setIsInCart] = useState(false)
 
   const { addToCartHandler, deleteFromCartHandler, productsInCart } = useCart();
+  
+  const { convertedPrice, rateSymbolHandler } = useCurrency();
+
 
   const onAddButtonClickHandler = () => {
     addToCartHandler(product)
@@ -34,7 +38,7 @@ const ProductCard = ({ product }) => {
       </Link>
       <div className='text-center'>
         <p className='font-bold'>{title.split(" ").slice(0, 3).join(" ") + "..."}</p>
-        <p>${price}</p>
+        <p>{rateSymbolHandler()}{convertedPrice(price)}</p>
       </div>
       {
         isInCart ? <DeleteFromCartButton onClick={onDeleteButtonClickHandler} /> : <AddToCartButton onClick={onAddButtonClickHandler} />

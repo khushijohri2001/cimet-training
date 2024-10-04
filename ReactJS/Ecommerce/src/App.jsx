@@ -1,21 +1,22 @@
 import './App.css'
-import { Outlet } from "react-router-dom";
-import Header from './components/Header';
-import Footer from './components/Footer';
+import { useLoaderData } from "react-router-dom";
 import { CartContextProvider } from './context/CartContext';
 import { BlogContextProvider } from './context/BlogContext';
+import { CurrencyContextProvider } from "./context/CurrencyContext";
+import Wrapper from './components/Wrapper';
 
 function App() {
-
+  const data = useLoaderData();
+  
   return (
     <>
+    <CurrencyContextProvider>
       <CartContextProvider>
         <BlogContextProvider>
-          <Header />
-          <Outlet />
-          <Footer />
+          <Wrapper data={data}/>
         </BlogContextProvider>
       </CartContextProvider>
+      </CurrencyContextProvider>
     </>
   )
 }

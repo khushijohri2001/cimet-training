@@ -8,13 +8,14 @@ import Cart from "../pages/Cart";
 import Contact from "../pages/Contact";
 import { createBrowserRouter } from "react-router-dom";
 import NotFound from "../pages/NotFound";
-import { fetchApis } from "./loaders";
-import { getBlogsAPI, getFeaturedProductsAPI, getProductsAPI } from "../utils/constants";
+import { fetchApis, fetchCurrencyConversion } from "./loaders";
+import { getBlogsAPI, getCurrentConversionApi, getFeaturedProductsAPI, getProductsAPI } from "../utils/constants";
 
 export const AllRoutes = createBrowserRouter([
     {
         path: "/",
         element: <App/>,
+        loader: () => fetchCurrencyConversion(getCurrentConversionApi),
         children: [
             {
                 index: true,

@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import { useCart } from '../context/CartContext'
 import CartProductCard from '../components/CartProductCard';
+import { useCurrency } from '../context/CurrencyContext';
 
 const Cart = () => {
   const { productsInCart, totalPrice, totalPriceHandler } = useCart();
+
+  const { convertedPrice, rateSymbolHandler } = useCurrency();  
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(productsInCart))
@@ -34,7 +37,7 @@ const Cart = () => {
                   }
                 </div>
                 <div className='border-2 border-black w-[30%] h-10 p-2'>
-                  <p className='text-xl'>Total Price: ${totalPrice}</p>
+                  <p className='text-xl'>Total Price: {rateSymbolHandler()}{convertedPrice(totalPrice)}</p>
 
                 </div>
               </div>
