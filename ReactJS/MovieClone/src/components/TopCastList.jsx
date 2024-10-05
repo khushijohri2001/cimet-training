@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import TopCastCard from "./TopCastCard"
 
 const TopCastList = ({castDetails}) => {
