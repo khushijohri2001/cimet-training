@@ -1,4 +1,4 @@
-import { useLoaderData, useLocation, useParams } from "react-router-dom";
+import { useLoaderData} from "react-router-dom";
 import SinglePageContent from "../components/SinglePageContent";
 import RelatedHighlights from "../components/RelatedHighlights";
 import TopCastList from "../components/TopCastList";
@@ -6,8 +6,6 @@ import OfficialVideoList from "../components/OfficialVideoList";
 import { getImageUrl } from "../utils/constants";
 
 const SinglePage = () => {
-  const location = useLocation();
-  const currentPath = location?.pathname.includes("movie") ? "movie":"tv";
 
   const {movieDetails, movieCastDetails, movieVideoDetails} = useLoaderData();
 
