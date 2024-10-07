@@ -1,3 +1,4 @@
-const imageApi = "https://api.unsplash.com/photos/?client_id=YOUR_ACCESS_KEY"
+export const apiKey = "OLQt8VKQqnkeevY0Qk_UtYMoPe8rt4pHr8CWsPETeq0";
 
-Access key =OLQt8VKQqnkeevY0Qk_UtYMoPe8rt4pHr8CWsPETeq0
+export const unsplashApi = "https://api.unsplash.com";
+

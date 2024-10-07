@@ -1,0 +1,58 @@
+import React, { useState } from 'react'
+
+const Form = ({setData}) => {
+    const [formData, setFormData] = useState({});
+    const [isChecked, setIsChecked] = useState(false);
+
+
+    const formSubmitHandler = (e) => {
+        e.preventDefault();
+        setData(formData)
+    }
+
+    const userInputHandler = (e) => {
+        let {name, value} =  e.target;
+
+        if(name === "imageRandom"){
+            setIsChecked(e.target.checked)
+        }
+        
+        setFormData(data => ({...data, [name]: name === "imageRandom" ? e.target.checked : value}))
+    }
+
+    return (
+        <div className='p-6 my-10 border-2 border-black flex flex-col gap-6 items-center  w-[40%] m-auto'>
+            <h2 className='text-xl font-bold'>Select options</h2>
+
+            <form action="" className='flex flex-col gap-8' onSubmit={formSubmitHandler}>
+
+                <div>
+                    <label htmlFor="search-query" className='text-lg font-bold'>Search for Images</label>
+                    <input name="imageQuery" type="text" id="search-query" placeholder='Search for Images' className='border-2 border-black p-2 rounded w-[30rem] disabled:bg-gray-100 disabled:border-gray-400 disabled:text-gray-500' onChange={userInputHandler} disabled={isChecked} />
+                </div>
+
+                <div>
+                    <input name="imageRandom" type="checkbox" id="checkbox" className='mr-2' onChange={userInputHandler} />
+                    <label htmlFor="checkbox" className='text-lg' >Do you want Random Images?</label>
+                </div>
+
+                <div>
+                    <label htmlFor="imageQuantity" className='text-lg font-bold'>Number of Images to Display</label>
+                    <input name="imageQuantity" type="text" className='border-2 border-black p-2 rounded w-[30rem]' onChange={userInputHandler} />
+                </div>
+
+                <div>
+                    <select name="imageOrientation" id="" className='p-2 rounded text-lg' onChange={userInputHandler}>
+                        <option value="">Choose Orientation</option>
+                        <option value="landscape">Landscape</option>
+                        <option value="portrait">Portrait</option>
+                    </select>
+                </div>
+
+                <button type="submit" className='bg-amber-500 p-2 rounded font-bold'>Submit</button>
+            </form>
+        </div>
+    )
+}
+
+export default Form

@@ -1,34 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import Form from './components/Form'
+import Header from './components/Header'
+import { apiKey, unsplashApi } from './utils/constants';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState({
+    query: "",
+    count: 5,
+    orientation: "",
+    isRandom: false
+  });
+
+  const fetchImages = async () => {
+    if (isRandom) {
+
+      const response = await axios.get(`${unsplashApi}/photos/random`, {
+        params: {
+          client_id: apiKey,
+          count: data.count === 0 ? 5 : data.count,
+          orientation: data.orientation
+        }
+      });
+
+      return response.data;
+
+    } else {
+
+      const response = await axios.get(`${unsplashApi}/search/photos`, {
+        params: {
+          client_id: apiKey,
+          query: data.query,
+          per_page: data.count === 0 ? 5 : data.count,
+          orientation: data.orientation
+        }
+      });
+
+      return response.data.results;
+
+    }
+  }
+
+
+  useEffect(() => {
+    // console.log(fetchImages());
+    
+  }, [data])
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      <Header />
+      <Form setData={setData} />
+    </div>
   )
 }
 
