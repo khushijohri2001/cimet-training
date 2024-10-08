@@ -4,51 +4,55 @@ import Form from './components/Form'
 import Header from './components/Header'
 import { apiKey, unsplashApi } from './utils/constants';
 import axios from "axios"
+import Slider from './components/Slider';
 
 function App() {
   const [data, setData] = useState({
     query: "",
     count: 5,
-    orientation: "",
+    orientation: "landscape",
     isRandom: false
   });
 
-  const fetchImages = async () => {
-    if (data.isRandom) {
+  const [images, setImages] = useState([])
 
-      const response = await axios.get(`${unsplashApi}/photos/random`, {
-        params: {
-          client_id: apiKey,
-          count: data.count === 0 ? 5 : data.count,
-          orientation: data.orientation
-        }
-      });
 
-      return response.data;
+  const fetchImages = async (formData) => {
+    try {
+      if (formData.isRandom) {
+        const response = await axios.get(`${unsplashApi}/photos/random`, {
+          params: {
+            client_id: apiKey,
+            count: formData.count === 0 ? 5 : formData.count,
+            orientation: formData.orientation
+          }
+        });
+        return response.data;
 
-    } else {
+      } else {
+        const response = await axios.get(`${unsplashApi}/search/photos`, {
+          params: {
+            client_id: apiKey,
+            query: formData.query,
+            per_page: formData.count === 0 ? 5 : formData.count,
+            orientation: formData.orientation
+          }
+        });
 
-      const response = await axios.get(`https://api.unsplash.com/search/photos?client_id=${apiKey}&per_page=30`)
-      
-      // (`${unsplashApi}/search/photos`, {
-      //   params: {
-      //     client_id: apiKey,
-      //     query: data.query,
-      //     per_page: data.count === 0 ? 5 : data.count,
-      //     orientation: data.orientation
-      //   }
-      // });
+        return response.data.results;
+      }
 
-      return response.data.results;
-
+    } catch (error) {
+      console.log(error);
     }
   }
 
 
   return (
-    <div>
-      <Header  />
-      <Form setData={setData} fetchImages={fetchImages} />
+    <div className='my-10'>
+      <Header />
+      <Form data={data} setData={setData} fetchImages={fetchImages} setImages={setImages} />
+      <Slider/>
     </div>
   )
 }
