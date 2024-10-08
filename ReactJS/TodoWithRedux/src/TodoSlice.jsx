@@ -6,7 +6,8 @@ export const TodoSlice = createSlice({
         input: "",
         todos: [],
         isEdit: false,
-        editId: null
+        editId: null,
+        editInput: ""
     },
     reducers: {
         setInput: (state, action) => {
@@ -26,7 +27,21 @@ export const TodoSlice = createSlice({
             state.todos = updatedTodo
         },
         editTodo: (state, action) => {
-            state.isEdit = state.todos.find(todo => todo.id === action.payload ? !state.isEdit : state.isEdit)
+            state.editId =  action.payload
+            state.isEdit = !state.isEdit
+            state.editInput = state.todos.find((todo) => todo.id === action.payload).task
+        },
+        setEditInput: (state, action) => {
+            state.editInput = action.payload
+        },
+        updateTodo: (state, action) => {
+            state.todos = state.todos.map((todo) => todo.id === state.editId ? {...todo, task: state.editInput} : todo);
+            state.isEdit = false;
+            state.editId = null;
+            state.editInput = ""
+        },
+        deleteAllTodos: (state, action) => {
+            state.todos=[]
         }
     }
 })
@@ -34,7 +49,9 @@ export const TodoSlice = createSlice({
 export const SelectInput = (state) => {return state.Todo.input}
 export const SelectTodos = (state) => {return state.Todo.todos}
 export const SelectIsEdit = (state) => {return state.Todo.isEdit}
+export const SelectEditId = (state) => {return state.Todo.editId}
+export const SelectEditInput = (state) => {return state.Todo.editInput}
 
-export const { setInput, addTodo, deleteTodo, editTodo } = TodoSlice.actions;
+export const { setInput, addTodo, deleteTodo, editTodo, setEditInput, updateTodo, deleteAllTodos } = TodoSlice.actions;
 
 export default TodoSlice.reducer
