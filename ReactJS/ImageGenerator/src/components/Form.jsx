@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+/* eslint-disable react/prop-types */
+import { useState } from 'react'
 
-const Form = ({setData}) => {
+const Form = ({setData, fetchImages}) => {
     const [formData, setFormData] = useState({});
     const [isChecked, setIsChecked] = useState(false);
 
 
-    const formSubmitHandler = (e) => {
+    const formSubmitHandler = async (e) => {
         e.preventDefault();
         setData(formData)
+        // const images = await fetchImages();
+        // console.log(images);
+        
     }
 
     const userInputHandler = (e) => {
@@ -21,7 +25,7 @@ const Form = ({setData}) => {
     }
 
     return (
-        <div className='p-6 my-10 border-2 border-black flex flex-col gap-6 items-center  w-[40%] m-auto'>
+        <div className='p-6 my-10 border-2 border-black flex flex-col gap-6 items-center  w-[50%] m-auto'>
             <h2 className='text-xl font-bold'>Select options</h2>
 
             <form action="" className='flex flex-col gap-8' onSubmit={formSubmitHandler}>

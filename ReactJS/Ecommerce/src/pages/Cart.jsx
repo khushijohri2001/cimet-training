@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useCart } from '../context/CartContext'
 import CartProductCard from '../components/CartProductCard';
 import { useCurrency } from '../context/CurrencyContext';
