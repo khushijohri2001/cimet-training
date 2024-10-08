@@ -26,7 +26,7 @@ export const TodoSlice = createSlice({
             state.todos = updatedTodo
         },
         editTodo: (state, action) => {
-            state.isEdit = !state.isEdit
+            state.isEdit = state.todos.find(todo => todo.id === action.payload ? !state.isEdit : state.isEdit)
         }
     }
 })
