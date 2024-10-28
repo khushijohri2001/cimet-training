@@ -17,15 +17,17 @@
 }
 
 .card-container{
-    height: max-content;
     width: 100%;
     display: flex;
+    justify-items: space-between;
+    align-items: center;
     flex-wrap: wrap;
     gap: 100px;
+    margin: 20px;
 }
 
 .load-more-wrapper{
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 30px;
 }

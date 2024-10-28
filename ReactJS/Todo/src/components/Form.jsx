@@ -1,3 +1,5 @@
+
+
 const Form = ({submitHandler, input, setInput, deleteAllHandler}) => {
   return (
     <form onSubmit={submitHandler} className='flex gap-8 justify-center mb-12'>
