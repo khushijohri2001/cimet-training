@@ -48,7 +48,7 @@ import { universityData } from "./university-data.mjs";
 //     }
 //   ]
 
-
+// Q1
 const getAvgGrade = (data) => {
     const result = [];
 
@@ -87,6 +87,7 @@ const getAvgGrade = (data) => {
                 gradeObj[grade]+=1
 
             }
+
             totalAssignmentsAvg = totalAssignments / count;
             totalMidtermAvg = totalMidterm / count;
             totalFinalAvg = totalFinal / count;
@@ -125,5 +126,19 @@ const getGrade = (marks) => {
     }
 }
 
-console.log(getAvgGrade(universityData));
-// getAvgGrade(universityData)
+// Q2
+const getActivityReport = (data) => {
+    const result = [];
+
+    for (let i = 0; i < data.departments.length; i++) {
+        for (let j = 0; j < data.departments[i].courses.length; j++) {
+            const currentCourse = data.departments[i].courses[j];
+            // const 
+            console.log(currentCourse);
+            
+        }
+    }
+}
+
+// console.log(getAvgGrade(universityData));
+getActivityReport(universityData)
